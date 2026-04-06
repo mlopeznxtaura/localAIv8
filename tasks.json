@@ -8,7 +8,7 @@
       "description": "Initialize runtime/model preflight checks and environment guard.",
       "depends_on": [],
       "est_seconds": 45,
-      "status": "pending"
+      "status": "complete"
     },
     {
       "id": "T002",
@@ -20,7 +20,7 @@
         "T001"
       ],
       "est_seconds": 75,
-      "status": "pending"
+      "status": "complete"
     },
     {
       "id": "T003",
@@ -32,7 +32,7 @@
         "T001"
       ],
       "est_seconds": 40,
-      "status": "pending"
+      "status": "complete"
     },
     {
       "id": "T004",
@@ -44,7 +44,7 @@
         "T003"
       ],
       "est_seconds": 50,
-      "status": "pending"
+      "status": "complete"
     },
     {
       "id": "T005",
@@ -56,7 +56,7 @@
         "T004"
       ],
       "est_seconds": 25,
-      "status": "pending"
+      "status": "complete"
     },
     {
       "id": "T006",
@@ -68,7 +68,7 @@
         "T004"
       ],
       "est_seconds": 30,
-      "status": "pending"
+      "status": "complete"
     },
     {
       "id": "T007",
@@ -83,7 +83,7 @@
         "T006"
       ],
       "est_seconds": 55,
-      "status": "pending"
+      "status": "complete"
     }
   ]
 }
