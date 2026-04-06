@@ -1,0 +1,37 @@
+{
+  "step": 3,
+  "step_name": "html_parse_and_source_realignment",
+  "source_file": "bash.md",
+  "parsed_from": "mock.html",
+  "features": [
+    "localAIv8 v8 Control Surface",
+    "WSL2 + Ollama gemma4:26b",
+    "NOcron deterministic loop",
+    "Pipeline steps 0..7",
+    "Step 2 Mock UI active",
+    "Compression slider 0..50 (disabled in this run)",
+    "User-defined export path",
+    "NOcron execution sequence",
+    "Task status table",
+    "Manual acceleration control"
+  ],
+  "alignment": {
+    "realignment_policy": "Return to bash.md as source authority after UI generation",
+    "aligned_to_source": [
+      "WSL2 runtime",
+      "gemma4:26b model",
+      "NOcron loop control",
+      "pipeline staging",
+      "slider contract",
+      "export path requirement",
+      "task validation orientation"
+    ],
+    "drift_flags": [],
+    "alignment_ratio": 1.0
+  },
+  "next_input_for_step4": {
+    "summary": "Feature set extracted from mock UI and realigned to bash.md; ready for DAG construction.",
+    "feature_count": 10,
+    "source_guard": "Do not introduce features absent from bash.md/NOcron intent"
+  }
+}

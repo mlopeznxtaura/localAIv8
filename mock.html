@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>localAIv8 v8 | NOcron Control</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #11172a;
+      --line: #2a3558;
+      --text: #e8eeff;
+      --muted: #93a2cc;
+      --ok: #3fd18a;
+      --warn: #f2b84b;
+      --danger: #ff6a6a;
+      --accent: #5ea0ff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Segoe UI, Arial, sans-serif; background: radial-gradient(circle at 20% 0%, #16244a 0%, var(--bg) 45%); color: var(--text); }
+    .shell { min-height: 100vh; padding: 20px; display: grid; gap: 14px; grid-template-rows: auto auto 1fr; }
+    .bar { display: flex; justify-content: space-between; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+    .grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+    .muted { color: var(--muted); font-size: 12px; }
+    h1,h2,h3 { margin: 0 0 10px 0; }
+    textarea,input,select { width: 100%; background: #0c1326; color: var(--text); border: 1px solid var(--line); border-radius: 10px; padding: 10px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    button { border: 1px solid var(--line); background: #172448; color: var(--text); border-radius: 10px; padding: 10px 12px; cursor: pointer; }
+    button.primary { background: #1e3a74; border-color: #3155a7; }
+    button.warn { background: #4e3a12; border-color: #7d5b1d; }
+    .pipeline { display: grid; grid-template-columns: repeat(8, minmax(120px,1fr)); gap: 8px; }
+    .step { border: 1px solid var(--line); border-radius: 10px; padding: 8px; font-size: 12px; background: #0d1429; }
+    .step.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+    .status { display: inline-flex; gap: 8px; align-items: center; }
+    .dot { width: 8px; height: 8px; border-radius: 99px; display: inline-block; }
+    .ok { background: var(--ok); } .warnc { background: var(--warn); } .bad { background: var(--danger); }
+    .tasks { max-height: 330px; overflow: auto; border: 1px solid var(--line); border-radius: 10px; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th,td { padding: 8px; border-bottom: 1px solid #202b4d; text-align: left; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="bar">
+      <div>
+        <h1>localAIv8 v8 Control Surface</h1>
+        <div class="muted">WSL2 + Ollama gemma4:26b | NOcron deterministic loop</div>
+      </div>
+      <div class="status">
+        <span class="dot ok"></span><span class="muted">Model Ready</span>
+        <span class="dot warnc"></span><span class="muted">Step 2 Active</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Pipeline</h2>
+      <div class="pipeline">
+        <div class="step">0 Context+Tool</div>
+        <div class="step">1 Compress</div>
+        <div class="step active">2 Mock UI</div>
+        <div class="step">3 HTML Parse</div>
+        <div class="step">4 DAG</div>
+        <div class="step">5 Scaffold+Tests</div>
+        <div class="step">6 Write</div>
+        <div class="step">7 Export</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Build Intent Source</h2>
+        <div class="muted">Source: bash.md (no compression in this run)</div>
+        <textarea rows="10" readonly>Loaded from bash.md as authoritative prompt input for Step 2.</textarea>
+
+        <h3 style="margin-top:12px">Controls</h3>
+        <div class="row">
+          <div>
+            <label class="muted">Compression Slider (disabled for this run)</label>
+            <input type="range" min="0" max="50" value="0" disabled />
+          </div>
+          <div>
+            <label class="muted">Export Path</label>
+            <input placeholder="/mnt/d/exports/project" value="" />
+          </div>
+        </div>
+        <div class="btns" style="margin-top:10px">
+          <button class="primary">Run Step 2</button>
+          <button>Run Step 3 Parse</button>
+          <button class="warn">Manual Accelerate</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>NOcron Execution</h2>
+        <div class="muted">Initial trigger -> run one -> validate -> schedule next one -> stop</div>
+        <div class="tasks" style="margin-top:10px">
+          <table>
+            <thead><tr><th>Task</th><th>Status</th><th>Depends On</th></tr></thead>
+            <tbody>
+              <tr><td>T001 Normalize</td><td>complete</td><td>-</td></tr>
+              <tr><td>T002 NOcron Rules</td><td>complete</td><td>T001</td></tr>
+              <tr><td>T003 UI Layer</td><td>complete</td><td>T001</td></tr>
+              <tr><td>T004 Slider Contract</td><td>complete</td><td>T001</td></tr>
+              <tr><td>T005 Export Path</td><td>complete</td><td>T001</td></tr>
+              <tr><td>T006 Gap Policy</td><td>complete</td><td>T001</td></tr>
+              <tr><td>T007 Preserve Architecture</td><td>complete</td><td>T001..T006</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

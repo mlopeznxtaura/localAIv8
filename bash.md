@@ -75,7 +75,7 @@ return fallback
 
 def ask(step_num: int, step_name: str, user_content: str, budget_tokens: int = 500, require_tools: bool = False) -> str:
 system_prompt = (
-"You are NEXUS, a stateless build execution unit. Output JSON only. "
+"You are localAIv8, a stateless build execution unit. Output JSON only. "
 "Compress next_input by ≥40%. Stay under {budget_tokens} tokens. "
 "If missing data, emit tool_calls array. Never hallucinate."
 )
@@ -121,7 +121,7 @@ raw_dir.mkdir(parents=True, exist_ok=True)
 
 def ask_with_training(step, step_name, substep, user_content, budget, session_id, require_tools=False):
 start = time.time()
-system_prompt = "You are NEXUS, a stateless build execution unit. Output JSON only."
+system_prompt = "You are localAIv8, a stateless build execution unit. Output JSON only."
 raw_response = ask(step, step_name, user_content, budget, require_tools)
 latency_ms = int((time.time() - start) * 1000)
 parsed = safe_json(raw_response, fallback={"error": "invalid_json", "raw": raw_response})
@@ -140,7 +140,7 @@ pipeline/step2_mockui.py (excerpt)
 from ollama_client import ask_with_training
 import os
 
-session_id = os.environ.get("NEXUS_SESSION_ID", "unknown")
+session_id = os.environ.get("localAIv8_SESSION_ID", "unknown")
 prompt = f"Generate complete HTML mockup for: {compressed_intent}. Use modern UI libraries (check current best via tool if needed)."
 result = ask_with_training(2, "mockui", "main", prompt, 800, session_id, require_tools=True)
 ```
@@ -182,7 +182,7 @@ fi
 
 cd "$(dirname "$0")/.."
 SESSION_ID=$(uuidgen)
-export NEXUS_SESSION_ID="$SESSION_ID"
+export localAIv8_SESSION_ID="$SESSION_ID"
 echo "🔑 Session: $SESSION_ID"
 echo "$INTENT" > user_prompt.txt
 
@@ -209,7 +209,7 @@ PROJECT_ROOT = HERE.parent
 
 def run_step(step_num, step_name, session_id, intent=None):
 env = os.environ.copy()
-env["NEXUS_SESSION_ID"] = session_id
+env["localAIv8_SESSION_ID"] = session_id
 if step_num == 0 and intent:
 (PROJECT_ROOT / "user_prompt.txt").write_text(intent)
 script = HERE / f"step{step_num}_{step_name}.py"

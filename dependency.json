@@ -1,0 +1,87 @@
+{
+  "nodes": [
+    {
+      "id": "F001",
+      "name": "Runtime and Model Readiness",
+      "from_features": [
+        "WSL2 + Ollama gemma4:26b"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "F002",
+      "name": "NOcron Loop Control",
+      "from_features": [
+        "NOcron deterministic loop",
+        "NOcron execution sequence"
+      ],
+      "depends_on": [
+        "F001"
+      ]
+    },
+    {
+      "id": "F003",
+      "name": "Pipeline Stage Visibility",
+      "from_features": [
+        "Pipeline steps 0..7",
+        "Step 2 Mock UI active"
+      ],
+      "depends_on": [
+        "F001"
+      ]
+    },
+    {
+      "id": "F004",
+      "name": "Prompt Source Guard",
+      "from_features": [
+        "Build prompt source guard"
+      ],
+      "depends_on": [
+        "F003"
+      ]
+    },
+    {
+      "id": "F005",
+      "name": "Compression Slider Contract",
+      "from_features": [
+        "Compression slider 0..50 (disabled in this run)"
+      ],
+      "depends_on": [
+        "F004"
+      ]
+    },
+    {
+      "id": "F006",
+      "name": "Export Path Contract",
+      "from_features": [
+        "User-defined export path"
+      ],
+      "depends_on": [
+        "F004"
+      ]
+    },
+    {
+      "id": "F007",
+      "name": "Task Status and Manual Acceleration",
+      "from_features": [
+        "Task status table",
+        "Manual acceleration control"
+      ],
+      "depends_on": [
+        "F002",
+        "F003",
+        "F005",
+        "F006"
+      ]
+    }
+  ],
+  "build_order": [
+    "F001",
+    "F002",
+    "F003",
+    "F004",
+    "F005",
+    "F006",
+    "F007"
+  ]
+}
