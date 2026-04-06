@@ -1,0 +1,70 @@
+{
+  "step": 0,
+  "name": "tool_function_relevance_gate",
+  "input": "user_prompt.txt",
+  "output": "validated_prompt",
+  "generated_at_utc": "2026-04-06T03:57:00.295422+00:00",
+  "thresholds": {
+    "anchor_ratio_min": 0.85,
+    "tool_non_empty_min": 1
+  },
+  "coverage": {
+    "present": [
+      "step0_ground.py",
+      "step1_compress.py",
+      "step2_mockui.py",
+      "step3_parse.py",
+      "step4_dag.py",
+      "step5_tasks.py",
+      "step6_build.py",
+      "tool_cache",
+      "training_data",
+      "online_trainer.py",
+      "export_student.py",
+      "tasks.json",
+      "tests.json",
+      "output.zip",
+      "react",
+      "express"
+    ],
+    "missing": [],
+    "ratio": 1.0
+  },
+  "tool_calls": [
+    {
+      "tool": "web_search",
+      "query": "stateless llm orchestration architecture validation",
+      "url": "https://api.duckduckgo.com/?q=stateless+llm+orchestration+architecture+validation&format=json&no_html=1&skip_disambig=1",
+      "ok": true,
+      "snippet": "",
+      "evidence_non_empty": false
+    },
+    {
+      "tool": "web_search",
+      "query": "beautifulsoup parse visible buttons headings",
+      "url": "https://api.duckduckgo.com/?q=beautifulsoup+parse+visible+buttons+headings&format=json&no_html=1&skip_disambig=1",
+      "ok": true,
+      "snippet": "",
+      "evidence_non_empty": false
+    },
+    {
+      "tool": "web_search",
+      "query": "deterministic md5 cache key pattern",
+      "url": "https://api.duckduckgo.com/?q=deterministic+md5+cache+key+pattern&format=json&no_html=1&skip_disambig=1",
+      "ok": true,
+      "snippet": "",
+      "evidence_non_empty": false
+    }
+  ],
+  "tool_non_empty_count": 0,
+  "cutoff": {
+    "training_cutoff": "2025-04-01",
+    "today_utc": "2026-04-06",
+    "status": "today_after_cutoff"
+  },
+  "risk_level": "high",
+  "decision": "no_go",
+  "blockers": [
+    "insufficient_tool_evidence"
+  ]
+}
