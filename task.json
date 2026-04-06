@@ -1,0 +1,113 @@
+{
+  "spec_id": "nextaura.localai.v8.tasklist",
+  "version": "v8",
+  "execution_mode": "ordered_with_realtime_validation",
+  "tasks": [
+    {
+      "id": "T001",
+      "name": "Normalize v8 machine-readable instruction file",
+      "description": "Ensure bash.md has one v8 title and strict machine-readable content with no legacy version labels.",
+      "depends_on": [],
+      "validation_test": {
+        "id": "V001",
+        "type": "content_validation",
+        "assert": [
+          "first line equals '# NEXUS v8'",
+          "content parses as JSON after title line",
+          "no tokens matching v3|v5|v6 case-insensitive"
+        ]
+      }
+    },
+    {
+      "id": "T002",
+      "name": "Encode NOcron trigger-loop semantics",
+      "description": "Define initial cron trigger of first task, then python self-scheduling loop that schedules exactly one next cron job and exits cleanly at completion.",
+      "depends_on": ["T001"],
+      "validation_test": {
+        "id": "V002",
+        "type": "spec_validation",
+        "assert": [
+          "nocron_flow.trigger_model exists and states first-task-only cron trigger",
+          "nocron_flow.loop_model states one-next-job scheduling",
+          "nocron_flow.termination states clean loop exit"
+        ]
+      }
+    },
+    {
+      "id": "T003",
+      "name": "Define mandatory React+Express layer",
+      "description": "Mark React+Express as mandatory and tie rationale to Tauri/Rust CPU constraints.",
+      "depends_on": ["T001"],
+      "validation_test": {
+        "id": "V003",
+        "type": "spec_validation",
+        "assert": [
+          "ui_api_layer.mandatory == true",
+          "ui_api_layer.stack contains react and express",
+          "ui_api_layer.reason includes CPU bound rationale"
+        ]
+      }
+    },
+    {
+      "id": "T004",
+      "name": "Add prompt compression slider contract",
+      "description": "Add user-controlled slider in prompt compression step with range 0 to 50.",
+      "depends_on": ["T001"],
+      "validation_test": {
+        "id": "V004",
+        "type": "schema_validation",
+        "assert": [
+          "pipeline.step_1.ui_control.min == 0",
+          "pipeline.step_1.ui_control.max == 50",
+          "pipeline.step_1.ui_control.type == user_slider"
+        ]
+      }
+    },
+    {
+      "id": "T005",
+      "name": "Add user-defined export path contract",
+      "description": "Require user-provided output folder path and enforce writable-path checks.",
+      "depends_on": ["T001"],
+      "validation_test": {
+        "id": "V005",
+        "type": "spec_validation",
+        "assert": [
+          "export_path_contract.user_defined == true",
+          "export_path_contract.input_required == true",
+          "export_path_contract.validation includes writable check"
+        ]
+      }
+    },
+    {
+      "id": "T006",
+      "name": "Encode gap-capture policy for diagram incompleteness",
+      "description": "If visual diagram is incomplete, capture and resolve gaps immediately before implementation continues.",
+      "depends_on": ["T001"],
+      "validation_test": {
+        "id": "V006",
+        "type": "policy_validation",
+        "assert": [
+          "gap_policy.required_action exists",
+          "gap_policy.required_action includes immediate gap resolution"
+        ]
+      }
+    },
+    {
+      "id": "T007",
+      "name": "Preserve required architecture capabilities",
+      "description": "Ensure stateless pipeline, tool caching, test generation, online learning, export options, and deterministic rules remain explicit.",
+      "depends_on": ["T001", "T002", "T003", "T004", "T005", "T006"],
+      "validation_test": {
+        "id": "V007",
+        "type": "coverage_validation",
+        "assert": [
+          "execution_contract exists",
+          "tooling.cache.strategy includes md5",
+          "pipeline defines steps 0 through 7",
+          "training_and_learning.online_update.method includes qlora",
+          "invariants contains do not invent architecture"
+        ]
+      }
+    }
+  ]
+}

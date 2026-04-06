@@ -1,0 +1,30 @@
+[
+  {
+    "task_id": "T001",
+    "passed": true
+  },
+  {
+    "task_id": "T002",
+    "passed": true
+  },
+  {
+    "task_id": "T003",
+    "passed": true
+  },
+  {
+    "task_id": "T004",
+    "passed": true
+  },
+  {
+    "task_id": "T005",
+    "passed": true
+  },
+  {
+    "task_id": "T006",
+    "passed": true
+  },
+  {
+    "task_id": "T007",
+    "passed": true
+  }
+]
