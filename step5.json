@@ -1,0 +1,15 @@
+{
+  "step": 5,
+  "step_name": "file_scaffold_and_tests",
+  "input_source": "step4.json",
+  "tasks_count": 7,
+  "tests_count": 7,
+  "compile_validation": {
+    "all_valid": true,
+    "invalid_tests": []
+  },
+  "outputs": [
+    "tasks.json",
+    "tests.json"
+  ]
+}

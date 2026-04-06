@@ -1,0 +1,89 @@
+{
+  "tasks": [
+    {
+      "id": "T001",
+      "node_id": "F001",
+      "title": "Runtime and Model Readiness",
+      "file": "pipeline/runtime_preflight.py",
+      "description": "Initialize runtime/model preflight checks and environment guard.",
+      "depends_on": [],
+      "est_seconds": 45,
+      "status": "pending"
+    },
+    {
+      "id": "T002",
+      "node_id": "F002",
+      "title": "NOcron Loop Control",
+      "file": "pipeline/nocron_controller.py",
+      "description": "Implement NOcron execution controller (trigger->validate->schedule-next->stop).",
+      "depends_on": [
+        "T001"
+      ],
+      "est_seconds": 75,
+      "status": "pending"
+    },
+    {
+      "id": "T003",
+      "node_id": "F003",
+      "title": "Pipeline Stage Visibility",
+      "file": "api/pipeline_status.py",
+      "description": "Render pipeline stage visibility model for UI and status API payload.",
+      "depends_on": [
+        "T001"
+      ],
+      "est_seconds": 40,
+      "status": "pending"
+    },
+    {
+      "id": "T004",
+      "node_id": "F004",
+      "title": "Prompt Source Guard",
+      "file": "pipeline/source_guard.py",
+      "description": "Implement source guard so Step 3+ stages realign to bash.md authority.",
+      "depends_on": [
+        "T003"
+      ],
+      "est_seconds": 50,
+      "status": "pending"
+    },
+    {
+      "id": "T005",
+      "node_id": "F005",
+      "title": "Compression Slider Contract",
+      "file": "ui/compression_contract.json",
+      "description": "Add compression slider contract (0..50) handling for UI/API.",
+      "depends_on": [
+        "T004"
+      ],
+      "est_seconds": 25,
+      "status": "pending"
+    },
+    {
+      "id": "T006",
+      "node_id": "F006",
+      "title": "Export Path Contract",
+      "file": "pipeline/export_path_guard.py",
+      "description": "Add user-defined export path validation contract.",
+      "depends_on": [
+        "T004"
+      ],
+      "est_seconds": 30,
+      "status": "pending"
+    },
+    {
+      "id": "T007",
+      "node_id": "F007",
+      "title": "Task Status and Manual Acceleration",
+      "file": "api/task_controls.py",
+      "description": "Implement task-status table + manual acceleration endpoint contract.",
+      "depends_on": [
+        "T002",
+        "T003",
+        "T005",
+        "T006"
+      ],
+      "est_seconds": 55,
+      "status": "pending"
+    }
+  ]
+}
