@@ -3,24 +3,33 @@
   "input": "user_prompt.txt",
   "output": "validated_prompt",
   "tool_call": true,
-  "today_utc": "2026-04-06",
-  "training_cutoff": "2025-04-01",
-  "cutoff_comparison": "today_after_cutoff",
-  "research_calls": [
-    {
-      "query": "Ollama gemma4 best practices 2026",
-      "ok": true,
-      "snippet": ""
-    },
-    {
-      "query": "BeautifulSoup parse buttons headings html",
-      "ok": true,
-      "snippet": ""
-    },
-    {
-      "query": "MD5 cache key deterministic tool call strategy",
-      "ok": true,
-      "snippet": ""
-    }
-  ]
+  "relevance_as_of_today": {
+    "today_utc": "2026-04-06",
+    "calls": [
+      {
+        "query": "stateless ai orchestration tool caching best practices",
+        "ok": true,
+        "cached": false,
+        "latency_ms": 233,
+        "snippet": ""
+      },
+      {
+        "query": "ollama gemma4 context limits and prompt reliability",
+        "ok": true,
+        "cached": false,
+        "latency_ms": 132,
+        "snippet": ""
+      }
+    ],
+    "succeeded": 2
+  },
+  "training_cutoff_compare": {
+    "cutoff": "2025-04-01",
+    "status": "today_after_cutoff"
+  },
+  "precompress": {
+    "mode": "whitespace_normalization",
+    "input_chars": 8702,
+    "output_chars": 8703
+  }
 }
