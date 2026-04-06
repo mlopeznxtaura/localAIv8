@@ -1,9 +1,0 @@
-{
-  "control": "compression_percent",
-  "type": "slider",
-  "min": 0,
-  "max": 50,
-  "default": 0,
-  "disabled_in_current_run": true,
-  "notes": "Steps 0 and 1 were intentionally skipped for this run."
-}
